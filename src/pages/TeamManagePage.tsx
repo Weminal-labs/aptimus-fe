@@ -79,7 +79,12 @@ const TeamManagePage = () => {
         {team ? (
           <div className="flex flex-col w-full">
             <div className="flex gap-5 border-b w-full pb-8">
-              <Avatar src="" size="lg" radius="md" className="w-32 h-32" />
+              <Avatar
+                src={team.image}
+                size="lg"
+                radius="md"
+                className="w-32 h-32"
+              />
               <div className="flex flex-col justify-between">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-3xl font-semibold">{team.name}</h1>
@@ -121,39 +126,40 @@ const TeamManagePage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {teamMembers && teamMembers.map((m) => {
-                      return (
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                          <th
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                          >
-                            {m.email}
-                          </th>
-                          <td className="px-6 py-4">
-                            {m.is_leader ? "Leader" : "Member"}
-                          </td>
+                    {teamMembers &&
+                      teamMembers?.map((m) => {
+                        return (
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                            >
+                              {m.email}
+                            </th>
+                            <td className="px-6 py-4">
+                              {m.is_leader ? "Leader" : "Member"}
+                            </td>
 
-                          <td className="px-6 py-4">
-                            {isLeader && m.id !== user?.id ? (
-                              <>
-                                <Button
-                                  color="primary"
-                                  className="font-semibold"
-                                  onClick={() => {
-                                    handleClickDeleteMember(m.id);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              </>
-                            ) : (
-                              <p className="">-</p>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                            <td className="px-6 py-4">
+                              {isLeader && m.id !== user?.id ? (
+                                <>
+                                  <Button
+                                    color="primary"
+                                    className="font-semibold"
+                                    onClick={() => {
+                                      handleClickDeleteMember(m.id);
+                                    }}
+                                  >
+                                    Delete
+                                  </Button>
+                                </>
+                              ) : (
+                                <p className="">-</p>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
                   </tbody>
                 </table>
               </div>

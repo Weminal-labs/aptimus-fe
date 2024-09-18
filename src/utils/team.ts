@@ -11,11 +11,15 @@ export const getMainTeam = async (user_id: string) => {
   }
 };
 
-export const createTeam = async (team_name: string, user_id: string) => {
+export const createTeam = async (
+  team_name: string,
+  user_id: string,
+  image: string
+) => {
   try {
     const response = await axios.post(`${apiURL}/team`, {
       name: team_name,
-      image: "",
+      image,
     });
 
     if (response.status !== 200) return null;

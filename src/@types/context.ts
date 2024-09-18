@@ -33,6 +33,7 @@ export type Team_user = {
 export type Team = {
   id: string;
   name: string;
+  image: string;
 };
 
 export interface TeamExtended extends Team {
